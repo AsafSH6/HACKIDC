@@ -2,6 +2,7 @@ from django.http import QueryDict
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework_extensions import mixins
+from rest_framework.decorators import detail_route
 from rest_framework import status
 from rest_framework.response import Response
 from gymmy_app.models import Trainee
@@ -26,5 +27,11 @@ class TraineeViewSet(mixins.NestedViewSetMixin, viewsets.ModelViewSet):
                                         email=email)
             new_trainee = Trainee(user=new_user, **request.data).save()
             return Response(new_trainee.pk, status=status.HTTP_201_CREATED)
+
+    @detail_route(methods=['GET'])
+    def get_current_training_plan(self, request, *args, **kwargs):
+        trainee = self.get_object()
+        current_plan = trainee.training_planes.all().latest('date')
+        return Response(current_plan.pk, status=status.HTTP_200_OK)
 
 
