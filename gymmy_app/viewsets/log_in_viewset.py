@@ -12,7 +12,7 @@ class LogInApiView(APIView):
         try:
             user = User.objects.get(username=username)
             if user.check_password(password) is True:
-                return Response(request.user.trainees.first().pk, status=status.HTTP_200_OK)
+                return Response(user.trainees.first().pk, status=status.HTTP_200_OK)
             else:
                 return Response(False, status=status.HTTP_401_UNAUTHORIZED)
         except ObjectDoesNotExist as e:
