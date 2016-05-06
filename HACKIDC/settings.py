@@ -129,7 +129,7 @@ STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static_gymmy files.
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static_gymmy'),
+    '/app/static_gymmy',
 )
 print STATICFILES_DIRS
 
