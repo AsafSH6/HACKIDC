@@ -21,7 +21,7 @@ router.register(r'personal-progresses', viewsets.PersonalProgressViewSet, base_n
 
 router.register(r'training-plan-exercise-details', viewsets.TrainingPlanExerciseDetailViewSet, base_name='training-plan-exercise-details')
 
-router.register(r'training-plan-exercise-progresses', viewsets.TrainingPlanExerciseDetailViewSet, base_name='training-plan-exercise-progresse')
+router.register(r'training-plan-exercise-progresses', viewsets.TrainingPlanExerciseProgressViewSet, base_name='training-plan-exercise-progresse')
 
 
 urlpatterns = router.urls

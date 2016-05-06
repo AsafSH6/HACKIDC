@@ -49,7 +49,7 @@ class Gym(models.Model):
     email = models.CharField(max_length=256, null=True, blank=True)
     website = models.CharField(max_length=256, null=True, blank=True)
     facebook_page = models.CharField(max_length=256, null=True, blank=True)
-    gym_machines = models.ManyToManyField(GymMachine)
+    gym_machines = models.ManyToManyField(GymMachine, null=True, blank=True)
 
     def __unicode__(self):
         return '{name}, {city} {street}, {telephone}, {email}, {website}, {facebook_page}'.format(name=self.name,
