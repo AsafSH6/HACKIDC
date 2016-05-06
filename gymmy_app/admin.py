@@ -1,7 +1,7 @@
 from django.contrib import admin
 from gymmy_app.models import *
 
-admin.site.site.register(Trainee)
+admin.site.register(Trainee)
 admin.site.register(Gym)
 admin.site.register(GymMachine)
 admin.site.register(Exercise)
