@@ -48,20 +48,36 @@ class PersonalProgress(models.Model):
         return self
 
 
+class GymMachine(models.Model):
+    name = models.CharField(max_length=256)
+
+
 class Exercise(models.Model):
+    gym_machine = models.ForeignKey(GymMachine, related_name='exercises')
     name = models.CharField(max_length=256)
     muscle = models.IntegerField(choices=MUSCLES)
     level = models.IntegerField(choices=LEVELS, default=LEVELS.Beginner)
     description = models.CharField(max_length=512, null=True, blank=True)
+    video_url = models.URLField()
 
     def save(self, *args, **kwargs):
         super(Exercise, self).save(*args, **kwargs)
         return self
 
 
+class TrainingPlan(models.Model):
+    trainee = models.ForeignKey(Trainee, related_name='training_planes')
+    date = models.DateField(auto_now_add=True)
 
-# class TraineeExerciseDetail(models.Model):
-#     trainee = models.ForeignKey(Trainee, related_name='trainee_exercise_details')
+    def save(self, *args, **kwargs):
+        super(TrainingPlan, self).save(*args, **kwargs)
+        return self
+
+
+class TrainingPlanExerciseDetail(models.Model):
+    training_plan = models.ForeignKey(TrainingPlan, related_name='exercise_details')
+    exercise = models.ForeignKey(Exercise, related_name='exercise_details')
+
 
 
 
