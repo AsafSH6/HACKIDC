@@ -14,6 +14,6 @@ class LogInApiView(APIView):
             if user.check_password(password) is True:
                 return Response(user.trainees.first().pk, status=status.HTTP_200_OK)
             else:
-                return Response(False, status=status.HTTP_401_UNAUTHORIZED)
+                return Response('error', status=status.HTTP_401_UNAUTHORIZED)
         except ObjectDoesNotExist as e:
-            return Response(False, status=status.HTTP_401_UNAUTHORIZED)
+            return Response('error', status=status.HTTP_401_UNAUTHORIZED)
