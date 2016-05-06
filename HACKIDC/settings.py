@@ -131,7 +131,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     '/app/static_gymmy',
 )
-print STATICFILES_DIRS
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
