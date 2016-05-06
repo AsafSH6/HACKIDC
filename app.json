@@ -1,0 +1,8 @@
+{
+  "name": "hackidc",
+  "description": "gymmy",
+  "image": "heroku/python",
+  "repository": "https://github.com/AsafSH6/HACKIDC.git",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ]
+}
