@@ -22,6 +22,10 @@ class Trainee(models.Model):
         return self
 
 
+class GymMachine(models.Model):
+    name = models.CharField(max_length=256)
+
+
 class Gym(models.Model):
     name = models.CharField(max_length=256)
     city = models.CharField(max_length=256, null=True, blank=True)
@@ -30,7 +34,7 @@ class Gym(models.Model):
     email = models.CharField(max_length=256, null=True, blank=True)
     website = models.CharField(max_length=256, null=True, blank=True)
     facebook_page = models.CharField(max_length=256, null=True, blank=True)
-    gym_machines = models.ManyToManyField
+    gym_machines = models.ManyToManyField(GymMachine)
 
     def save(self, *args, **kwargs):
         super(Gym, self).save(*args, **kwargs)
@@ -47,10 +51,6 @@ class PersonalProgress(models.Model):
     def save(self, *args, **kwargs):
         super(PersonalProgress, self).save(*args, **kwargs)
         return self
-
-
-class GymMachine(models.Model):
-    name = models.CharField(max_length=256)
 
 
 class Exercise(models.Model):

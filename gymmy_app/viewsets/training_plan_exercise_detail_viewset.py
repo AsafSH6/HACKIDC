@@ -4,7 +4,7 @@ from gymmy_app.models import TrainingPlanExerciseDetail
 from gymmy_app.serializers.training_plan_exercise_detail_serializer import TrainingPlanExerciseDetailSerializer
 
 
-class TrainingPlanExerciseDetailViewSet(viewsets.ModelViewSet, mixins.NestedViewSetMixin):
+class TrainingPlanExerciseDetailViewSet(mixins.NestedViewSetMixin, viewsets.ModelViewSet):
 
     queryset = TrainingPlanExerciseDetail.objects.all()
     serializer_class = TrainingPlanExerciseDetailSerializer
