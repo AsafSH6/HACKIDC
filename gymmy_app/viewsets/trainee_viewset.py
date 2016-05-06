@@ -18,7 +18,7 @@ class TraineeViewSet(mixins.NestedViewSetMixin, viewsets.ModelViewSet):
         if isinstance(request.data, QueryDict):
             return super(TraineeViewSet, self).create(request, *args, **kwargs)
         else:
-            username = request.data.pop('username')
+            username = request.data['email']
             password = request.data.pop('password')
             email = request.data.pop('email')
             new_user = User.objects.create_user(username=username,
