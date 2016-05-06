@@ -1,3 +1,4 @@
+from django.conf.urls import url
 from rest_framework_extensions.routers import ExtendedDefaultRouter
 from gymmy_app import viewsets
 
@@ -25,4 +26,6 @@ router.register(r'training-plan-exercise-progresses', viewsets.TrainingPlanExerc
 
 
 urlpatterns = router.urls
+
+urlpatterns += [url(r'user-log-in/', viewsets.LogInViewSet.as_view(), name='user_log_in')]
 
