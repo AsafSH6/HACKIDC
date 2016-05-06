@@ -17,7 +17,7 @@ class ExerciseViewSet(mixins.NestedViewSetMixin, viewsets.ModelViewSet):
         exercise = self.get_object()
         replacement_exercises = Exercise.objects.filter(muscle=exercise.muscle, level=exercise.level)
         if replacement_exercises is not None:
-            return Response(replacement_exercises, status=status.HTTP_200_OK)
+            return Response(ExerciseSerializer(replacement_exercises, many=True).data, status=status.HTTP_200_OK)
         else:
             return Response('error', status=status.HTTP_404_NOT_FOUND)
 
