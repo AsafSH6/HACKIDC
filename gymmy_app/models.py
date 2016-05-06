@@ -14,6 +14,7 @@ class Trainee(models.Model):
     first_name = models.CharField(max_length=256)
     last_name = models.CharField(max_length=256)
     age = models.IntegerField(null=True)
+    birthday = models.CharField(max_length=256, null=True, blank=True)
     gender = models.CharField(choices=GENDERS, default=GENDERS.Other, max_length=256)
     level = models.CharField(choices=LEVELS, default=LEVELS.Beginner, max_length=256)
 
