@@ -1,5 +1,9 @@
+from django.http import QueryDict
+from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework_extensions import mixins
+from rest_framework import status
+from rest_framework.response import Response
 from gymmy_app.models import Trainee
 from gymmy_app.serializers.trainee_serializer import TraineeSerializer
 
@@ -8,3 +12,19 @@ class TraineeViewSet(mixins.NestedViewSetMixin, viewsets.ModelViewSet):
 
     queryset = Trainee.objects.all()
     serializer_class = TraineeSerializer
+
+    def create(self, request, *args, **kwargs):
+
+        if isinstance(request.data, QueryDict):
+            return super(TraineeViewSet, self).create(request, *args, **kwargs)
+        else:
+            username = request.data.pop('username')
+            password = request.data.pop('password')
+            email = request.data.pop('email')
+            new_user = User.objects.create_user(username=username,
+                                        password=password,
+                                        email=email)
+            new_trainee = Trainee(user=new_user, **request.data).save()
+            return Response(new_trainee.pk, status=status.HTTP_201_CREATED)
+
+

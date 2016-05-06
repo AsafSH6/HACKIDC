@@ -4,7 +4,7 @@ from gymmy_app.models import Exercise
 from gymmy_app.serializers.exercise_serializer import ExerciseSerializer
 
 
-class ExerciseViewSet(viewsets.ModelViewSet, mixins.NestedViewSetMixin):
+class ExerciseViewSet(mixins.NestedViewSetMixin, viewsets.ModelViewSet):
 
     queryset = Exercise.objects.all()
     serializer_class = ExerciseSerializer

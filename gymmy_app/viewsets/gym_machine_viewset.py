@@ -4,7 +4,7 @@ from gymmy_app.models import GymMachine
 from gymmy_app.serializers.gym_machine_serializer import GymMachineSerializer
 
 
-class GymMachineViewSet(viewsets.ModelViewSet, mixins.NestedViewSetMixin):
+class GymMachineViewSet(mixins.NestedViewSetMixin, viewsets.ModelViewSet):
 
     queryset = GymMachine.objects.all()
     serializer_class = GymMachineSerializer
