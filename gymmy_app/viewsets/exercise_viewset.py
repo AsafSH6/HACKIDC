@@ -15,7 +15,7 @@ class ExerciseViewSet(mixins.NestedViewSetMixin, viewsets.ModelViewSet):
     @detail_route(methods=['GET'])
     def get_replacement(self, request, *args, **kwargs):
         exercise = self.get_object()
-        replacement_exercises = Exercise.objects.filter(muscle=exercise.muscle, level=exercise.level)
+        replacement_exercises = Exercise.objects.filter(muscle=exercise.muscle, level=exercise.level).exclude(id=exercise.pk)
         if replacement_exercises is not None:
             return Response(ExerciseSerializer(replacement_exercises, many=True).data, status=status.HTTP_200_OK)
         else:
