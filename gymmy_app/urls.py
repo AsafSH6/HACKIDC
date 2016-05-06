@@ -27,5 +27,5 @@ router.register(r'training-plan-exercise-progresses', viewsets.TrainingPlanExerc
 
 urlpatterns = router.urls
 
-urlpatterns += [url(r'user-log-in/', viewsets.LogInViewSet.as_view(), name='user_log_in')]
+urlpatterns += [url(r'user-log-in/', viewsets.LogInApiView.as_view(), name='user_log_in')]
 

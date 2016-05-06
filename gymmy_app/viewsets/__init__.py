@@ -6,4 +6,4 @@ from trainee_viewset import TraineeViewSet
 from training_plan_exercise_detail_viewset import TrainingPlanExerciseDetailViewSet
 from training_plan_exercise_progress_viewset import TrainingPlanExerciseProgressViewSet
 from training_plan_viewset import TrainingPlanViewSet
-from log_in_viewset import LogInViewSet
+from log_in_viewset import LogInApiView

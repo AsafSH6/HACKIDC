@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 
 
-class LogInViewSet(APIView):
+class LogInApiView(APIView):
     def post(self, request, *args, **kwargs):
         username = request.data.pop('username')
         password = request.data.pop('password')
