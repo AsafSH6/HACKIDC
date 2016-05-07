@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from gymmy_app.models import Trainee
 from gymmy_app.serializers.trainee_serializer import TraineeSerializer
+from gymmy_app.serializers.training_plan_exercise_detail_serializer import TrainingPlanExerciseDetailSerializer
 
 
 class TraineeViewSet(mixins.NestedViewSetMixin, viewsets.ModelViewSet):
@@ -33,5 +34,12 @@ class TraineeViewSet(mixins.NestedViewSetMixin, viewsets.ModelViewSet):
         trainee = self.get_object()
         current_plan = trainee.training_planes.all().latest('date')
         return Response(current_plan.pk, status=status.HTTP_200_OK)
+
+    @detail_route(methods=['GET'])
+    def get_current_training_plan_exercises(self, request, *args, **kwargs):
+        trainee = self.get_object()
+        current_plan = trainee.training_planes.all().latest('date')
+        current_plan_exercises = current_plan.exercise_details.all()
+        return Response(TrainingPlanExerciseDetailSerializer(current_plan_exercises, many=True).data, status=status.HTTP_200_OK)
 
 
