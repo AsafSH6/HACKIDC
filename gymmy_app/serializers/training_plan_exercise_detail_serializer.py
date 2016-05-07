@@ -15,6 +15,7 @@ class TrainingPlanExerciseDetailSerializer(serializers.ModelSerializer):
 
     def get_lastest_exercise_progress(self, obj):
         lastest_exercise_progress = obj.exercise_progress.all()
+        print lastest_exercise_progress
         if len(lastest_exercise_progress) is not 0:
             return TrainingPlanExerciseProgressSerializer(lastest_exercise_progress.latest('date')).data
         else:
